@@ -1,0 +1,29 @@
+" zenburn like color scheme for vifm
+" http://kippura.org/zenburnpage/
+
+" Reset all styles first
+highlight clear
+
+highlight Border	cterm=none	ctermfg=237	ctermbg=233
+
+highlight TopLine	cterm=bold	ctermfg=202	ctermbg=233
+highlight TopLineSel	cterm=bold	ctermfg=202	ctermbg=233
+
+highlight Win		cterm=none	ctermfg=231	ctermbg=233
+highlight Directory	cterm=none	ctermfg=45	ctermbg=233
+highlight CurrLine	cterm=none	ctermfg=220	ctermbg=237
+highlight OtherLine	cterm=none	ctermfg=247	ctermbg=236
+highlight Selected	cterm=none	ctermfg=116	ctermbg=238
+
+highlight JobLine	cterm=bold	ctermfg=116	ctermbg=238
+highlight StatusLine	cterm=bold	ctermfg=45	ctermbg=232
+highlight ErrorMsg	cterm=bold	ctermfg=148	ctermbg=233
+highlight WildMenu	cterm=bold	ctermfg=233	ctermbg=144
+highlight CmdLine	cterm=none	ctermfg=231	ctermbg=233
+
+highlight Executable	cterm=none	ctermfg=198	ctermbg=233
+highlight Link		cterm=none	ctermfg=121	ctermbg=236
+highlight BrokenLink	cterm=none	ctermfg=243	ctermbg=233
+highlight Device	cterm=none	ctermfg=229	ctermbg=233
+highlight Fifo		cterm=none	ctermfg=109	ctermbg=233
+highlight Socket	cterm=none	ctermfg=110	ctermbg=233
