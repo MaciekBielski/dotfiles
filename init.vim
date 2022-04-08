@@ -11,8 +11,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'joereynolds/gtags-scope'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'MaciekBielski/vim-monokai'
+Plug 'MaciekBielski/my_ulti_snips'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Raimondi/delimitMate'
 Plug 'jreybert/vimagit'
@@ -400,17 +400,14 @@ autocmd FileType c,cpp nnoremap <A-r> :call ToggleQuickFix()<CR>
 
 
 "==================== Snippets =========================="
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-
 let g:UltiSnipsExpandTrigger="<C-k>"
 let g:UltiSnipsListSnippets="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<A-l>"
 let g:UltiSnipsJumpBackwardTrigger="<A-h>"
 
-" If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.config/UltiSnips/"
-let g:UltiSnipsSnippetDirectories=["~/.config/UltiSnips/"]
+let g:UltiSnipsSnippetsDir="~/.config/nvim/autoload/my_ulti_snips"
+let g:UltiSnipsSnippetDirectories=["~/.config/nvim/autoload/my_ulti_snips"]
 autocmd FileType tex,plaintex :UltiSnipsAddFiletypes plaintex.tex
 "
 "==================== Pairs =========================="
