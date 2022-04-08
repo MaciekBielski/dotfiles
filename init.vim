@@ -484,17 +484,9 @@ let g:airline_left_sep = ' '
 
 set background=dark
 syntax on
-colorscheme monokai
-
-" Highlight TODO, FIXME, NOTE, etc.
-if has("autocmd")
-  if v:version > 701
-    autocmd Syntax * call matchadd('Todo',
-        \ '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\|NOTE\)\( \|:\)'
-        \)
-  endif
+if get(g:, 'vim_monokai_loaded', 1)
+    colorscheme monokai
 endif
-
 
 "==================== Per-project setup =========================="
 
