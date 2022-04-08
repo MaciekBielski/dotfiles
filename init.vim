@@ -405,10 +405,6 @@ let g:UltiSnipsListSnippets="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<A-l>"
 let g:UltiSnipsJumpBackwardTrigger="<A-h>"
 
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="~/.config/nvim/autoload/my_ulti_snips"
-let g:UltiSnipsSnippetDirectories=["~/.config/nvim/autoload/my_ulti_snips"]
-autocmd FileType tex,plaintex :UltiSnipsAddFiletypes plaintex.tex
 "
 "==================== Pairs =========================="
 let g:delimitMate_expand_cr=0
