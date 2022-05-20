@@ -314,6 +314,7 @@ autocmd FileType python,c,cpp nnoremap <leader>ff  :silent !tmux respawn-pane -k
                 \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
+                    \ -g"**/*.inc" -g"**/*.inl"
                     \ -g"**/*.bb" -g"**/*.bbappend" -g"**/*.sh" -g"**/*.txt"
                     \ ""
                     \ \| sed "s@<C-R>=getcwd()<CR>@.@g"
@@ -333,6 +334,7 @@ autocmd FileType python,c,cpp nnoremap <leader>fv  :silent !tmux split-window -h
                 \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
+                    \ -g"**/*.inc" -g"**/*.inl"
                     \ -g"**/*.bb" -g"**/*.bbappend" -g"**/*.sh" -g"**/*.txt"
                     \ ""
                     \ \| sed "s@<C-R>=getcwd()<CR>@.@g"
@@ -354,6 +356,7 @@ autocmd FileType python,c,cpp nnoremap <leader>fb  :silent !tmux split-window
                 \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
+                    \ -g"**/*.inc" -g"**/*.inl"
                     \ -g"**/*.bb" -g"**/*.bbappend" -g"**/*.sh" -g"**/*.txt"
                     \ ""
                     \ \| sed "s@<C-R>=getcwd()<CR>@.@g"
