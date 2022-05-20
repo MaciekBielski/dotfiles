@@ -29,9 +29,6 @@ sourceFirstFromSecond '~/.config/vifm/vifm_wrapper.sh' ~/.zshrc
 sh -c "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 install -m 0644 -T ./init.vim ~/.config/nvim/init.vim
 
-install -m 0644 -T -D ./custom_aliases.sh ~/.config/custom_aliases.sh
-sourceFirstFromSecond '~/.config/custom_aliases.sh' ~/.zshrc
-
 install -m 0644 -T -D ./markdown.vim ~/.config/nvim/after/syntax/markdown.vim
 nvim -c 'PlugInstall' -c 'qall'
 
