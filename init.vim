@@ -281,7 +281,7 @@ autocmd FileType netrw,c,cpp nnoremap <leader>gb :silent !tmux split-window
                     \ \| sed "s@ @:@; s@ @:\t@"
                     \ \| fzf -q "$_kword" --ansi --delimiter=':'
                     \ --preview="nvim -u $HOME/.config/nvim/init_pager.vim {1} +{2} -c '\'':norm zz'\'' -c '\'':redraw'\''"
-                        \ --preview-window="right:50\%" --sync
+                        \ --preview-window="up:75\%" --sync
                     \ \| cut -s -d":" -f1-2 --output-delimiter=" +");
                 \ _full_path=$(echo "$_tmp_out" \| cut -s -d" " -f1);
                 \ _line_num=$(echo "$_tmp_out" \| cut -s -d'+' -f2);
@@ -317,7 +317,7 @@ autocmd FileType netrw,c,cpp nnoremap <leader>gg :silent !tmux respawn-pane -k
 autocmd FileType python,c,cpp nnoremap <leader>ff  :silent !tmux respawn-pane -k
             \ 'cd <C-R>=getcwd()<CR>;
                 \ _kword=$(echo '\''<C-R>=shellescape(expand('<cword>'))<CR>'\'')
-                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --smart-case
+                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --colors='path:fg:cyan'
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
                     \ -g"**/*.inc" -g"**/*.inl"
@@ -339,7 +339,7 @@ autocmd FileType python,c,cpp nnoremap <leader>ff  :silent !tmux respawn-pane -k
 autocmd FileType python,c,cpp nnoremap <leader>fv  :silent !tmux split-window -h
             \ 'cd <C-R>=getcwd()<CR>;
                 \ _kword=$(echo '\''<C-R>=shellescape(expand('<cword>'))<CR>'\'')
-                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --smart-case
+                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --colors='path:fg:cyan'
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
                     \ -g"**/*.inc" -g"**/*.inl"
@@ -363,7 +363,7 @@ autocmd FileType python,c,cpp nnoremap <leader>fv  :silent !tmux split-window -h
 autocmd FileType python,c,cpp nnoremap <leader>fb  :silent !tmux split-window
             \ 'cd <C-R>=getcwd()<CR>;
                 \ _kword=$(echo '\''<C-R>=shellescape(expand('<cword>'))<CR>'\'')
-                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --smart-case
+                \ _tmp_out=$(rg --with-filename -n --no-heading --no-messages --color=ansi --colors='path:fg:cyan'
                     \ -g"**/*.[chi]" -g"**/*.py" -g"**/*.py3" -g"**/*.rs"
                     \ -g"**/*.hh" -g"**/*.cc" -g"**/*.cpp" -g"**/*.hpp"
                     \ -g"**/*.inc" -g"**/*.inl"
