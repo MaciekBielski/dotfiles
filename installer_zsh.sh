@@ -39,6 +39,8 @@ sourceFirstFromSecond '~/.config/env_vars.sh' ~/.zshrc
 install -m 0644 -T -D ./aliases.sh ~/.config/aliases.sh
 sourceFirstFromSecond '~/.config/aliases.sh' ~/.zshrc
 
+install -m 0644 -T -D ./gitconfig_inc ~/.gitconfig_inc
+
 install -m 0644 -T ./fzf.zsh ~/.fzf.zsh
 sourceFirstFromSecond '~/.fzf.zsh' ~/.zshrc
 

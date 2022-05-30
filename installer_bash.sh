@@ -36,6 +36,8 @@ sourceFromBashRc '~/.config/env_vars.sh'
 install -m 0644 -T -D ./aliases.sh ~/.config/aliases.sh
 sourceFromBashRc '~/.config/aliases.sh'
 
+install -m 0644 -T -D ./gitconfig_inc ~/.gitconfig_inc
+
 install -m 0644 -T ./fzf.bash ~/.fzf.bash
 sourceFromBashRc '~/.fzf.bash'
 

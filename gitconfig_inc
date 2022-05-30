@@ -1,0 +1,64 @@
+[advice]
+	detachedHead = false
+[core]
+	editor = nvim
+	autocrlf = input
+	pager = less -R -F
+	logAllRefUpdates = true
+[diff]
+	tool = nvim_diff
+[difftool]
+	prompt = false
+[difftool "nvim_diff"]
+	cmd = nvim -d $LOCAL $REMOTE
+[merge]
+	tool = nvim_merge
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+[mergetool "nvim_merge"]
+	cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J' -c 'wincmd ='
+[color]
+	diff = auto
+	show = auto
+[push]
+	default = matching
+[alias]
+	blc = blame -c
+	st = status -s --branch
+	ls = log --date=short --color=always --pretty=format:'%C(green)%ad %C(auto)%h %C(blue)%an:%C(red)%d %C(reset)%s'
+	lg = log --color=always --pretty=format:'%C(green)%H%C(red)%d%n%C(yellow)Autor:  %<|(36)%an %ae%n%C(yellow)\t%ai%n%C(yellow)Commit: %<|(36)%cn %ce%n%C(yellow)\t%ci%n%n\t%s%n%n%b%n' --name-status
+	lgfollow = log --color=always --pretty=format:'%n%n%n%C(green)%h %C(blue)%an:%C(yellow)%s%C(reset)%n' -p --follow
+
+	irev = "!commit=$(git ls \"${1:-.}\" | fzf --ansi --reverse --preview='git show --color=always -1 $(echo {} | cut -d\" \" -f2)' | cut -d' ' -f2);test -n \"${commit}\" && git rev-parse \"${commit}\""
+	ilg = "!commit=$(git ls \"${1:-.}\" | fzf --ansi --reverse --preview='git show --color=always -1 $(echo {} | cut -d\" \" -f2)' | cut -d' ' -f2); test -n \"${commit}\" && git lg -1 \"${commit}\""
+	ishow = "!commit=$(git ls \"${1:-.}\" | fzf --ansi --reverse --preview='git show --color=always -1 $(echo {} | cut -d\" \" -f2)' | cut -d' ' -f2); test -n \"${commit}\" && git show \"${commit}\""
+	istm = "!fname=$(git status -s -z | xargs -0n1 | cut -c4- | fzf --phony --print0 --preview='git diff --color=always {}') && git diff \"${fname}\""
+	ists = "!fname=$(git status -s -z | xargs -0n1 | cut -c4- | fzf --phony --print0 --preview='git diff --staged --color=always {}') && git diff \"${fname}\""
+
+	remsh = remote -v show
+	co = checkout
+	cmt = commit -s
+	qamend = commit -s -n --amend --no-edit
+	cp = cherry-pick
+	egrep = grep --break --heading --line-number
+	tree = log --graph --color --decorate --pretty=format:'%Cgreen%h %Cblue%an:%Cred%d %Creset%s'
+	sendtest = send-email --no-signed-off-by-cc
+	send = send-email --no-signed-off-by-cc
+	fixline = log -1 --abbrev=12 --format='Fixes: %h ("%s")%nCc: %ae'
+[grep]
+	extendedRegexp = true
+	lineNumber = true
+[pull]
+	rebase = true
+[rebase]
+	autostash = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[remote "origin"]
+	tagopt = --tags
+[remote "private"]
+	tagopt = --tags
