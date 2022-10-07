@@ -10,4 +10,8 @@
 
 # Key bindings
 # ------------
-source "/usr/share/doc/fzf/examples/key-bindings.zsh"
+if [[ -f "/usr/share/doc/fzf/examples/key-bindings.zsh" ]]; then
+    source "/usr/share/doc/fzf/examples/key-bindings.zsh"
+elif [[ -f "/etc/zsh_completion.d/fzf-key-bindings" ]]; then
+    source "/etc/zsh_completion.d/fzf-key-bindings"
+fi
