@@ -16,7 +16,8 @@ declare -r SCRIPT_DIR=$(readlink -f $(dirname -- "${BASH_SOURCE[0]}"))
 
 sudo zypper refresh
 sudo zypper install -y git tmux vifm cscope fzf xclip ripgrep neovim curl
-# sudo zypper install -y zsh-syntax-highlighting
+# NOTE: This needs to be done manually
+# opi zsh-syntax-highlighting
 
 pushd "$SCRIPT_DIR"
 install -m 0644 -T ./tmux.conf ~/.tmux.conf
