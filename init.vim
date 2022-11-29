@@ -32,39 +32,11 @@ filetype plugin indent on
 " let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
 " let $NVIM_PYTHON_LOG_LEVEL="DEBUG"
 
-"==================== Custom functions =========================="
-function! s:ChecktimePeriodic(timer_id)
-    if getbufvar("%", "&buftype") == ""
-        checktime
-    endif
-endfunction
-
-" borrowed from: drmingdrmer/vim-toggle-quickfix
-function! ToggleQuickFix()
-    let win1 = winnr("$")
-    echomsg "Window: ".win1
-    cwindow
-    let win2 = winnr("$")
-    if win1 == win2
-        cclose
-    endif
-endfunction
-
-function! ToggleReadOnly()
-    if &readonly ==# "readonly"
-        set readonly
-        set nomodifiable
-    else
-        set noreadonly
-        set modifiable
-    endif
-endfunction
+source ./functions.vim
 
 "==================== Standard setup =========================="
 "
 set spelllang=en_us
-nnoremap gs     :setlocal spell!<CR>
-nnoremap gw     :ToggleWhitespace<CR>
 set noswapfile
 " window behavior
 set switchbuf=useopen
@@ -85,7 +57,6 @@ set dictionary+=/usr/share/dict/american-english
 "
 "set thesaurus+=/usr/share/dict/mthesaur.txt
 set completeopt=menu,menuone,noinsert
-autocmd FileType c,cpp set completeopt=noinsert,menuone,noselect
 set showfulltag
 set number
 set nowrapscan
@@ -103,7 +74,7 @@ set list
 set listchars=tab:▸\ ,trail:·,nbsp:+
 " check for and load file changes if edited from two tmux panes
 set updatetime=600
-call timer_start(1000, function('s:ChecktimePeriodic'), {'repeat': -1})
+call timer_start(1000, function('ChecktimePeriodic'), {'repeat': -1})
 
 set showmatch
 set matchtime=3
@@ -118,41 +89,28 @@ set clipboard+=unnamedplus
 "NOTE: Either curdir or sessdir
 set sessionoptions=curdir,localoptions,options
 " set sessionoptions=sessdir
+set cscopetag
+set nocscopeverbose
+set foldlevel=42
 
 let g:python_host_prog='/usr/bin/python3'
 let g:python3_host_prog='/usr/bin/python3'
 let g:markdown_fold_style = 'nested'
 
-" set filetype to none when it is empty
-function! SetFiletypeNewBuffer()
-  if @% == ""
-    :set filetype=c
-  endif
-endfunction
+autocmd FileType c,cpp set completeopt=noinsert,menuone,noselect
 autocmd BufEnter * :call SetFiletypeNewBuffer()
-
-" au TermOpen * set nonumber
-" au TermClose * set number
-" noremap <leader>t :terminal<CR>i
-noremap <leader>t :call ToggleReadOnly()<CR>
-
-
-au BufEnter,BufNewFile,BufRead *.s,*.S set ft=ia64
-au BufEnter,BufNewFile,BufRead *.ld set ft=ld
-au BufEnter,BufNewFile,BufRead *.h,*.c,*.i set ft=c
-
+autocmd BufEnter,BufNewFile,BufRead *.s,*.S set ft=ia64
+autocmd BufEnter,BufNewFile,BufRead *.ld set ft=ld
+autocmd BufEnter,BufNewFile,BufRead *.h,*.c,*.i set ft=c
 autocmd FileType ia64 setlocal cindent tabstop=16
 autocmd FileType c setlocal cindent tabstop=4 colorcolumn=81
 autocmd FileType cpp setlocal cindent tabstop=4 colorcolumn=121 tw=120
 autocmd FileType python setlocal tabstop=4
-
 autocmd FileType c,cpp set commentstring=//\ %s
-
 autocmd FileType c,cpp setlocal foldmethod=syntax cinoptions=n1sLs:0l1g0.5sh0.5st0(0u0U0
 autocmd FileType tex,plaintex setlocal foldmethod=syntax
             \ textwidth=0 formatoptions=jclro
 autocmd FileType python setlocal foldmethod=indent
-
 autocmd FileType markdown,text set mouse=nv
 autocmd FileType markdown,text,gitcommit set
     \ autoindent nocindent smartindent
@@ -160,9 +118,17 @@ autocmd FileType markdown,text,gitcommit set
     \ formatoptions-=2 formatoptions+=t1nq
     \ formatlistpat=^\\s*\\(\\d\\+[\\]:.)}\\t\ ]\\|[-\\*]\\)\\s*
 autocmd FileType gitcommit set tw=72 colorcolumn=73
+autocmd FileType c,cpp call SearchCscopeDBAndSetupRoot("cscope.out")
+autocmd FileType python call SearchPythonRoot(".root.proj")
+" autocmd TermOpen * set nonumber
+" autocmd TermClose * set number
 
+
+" noremap <leader>t :terminal<CR>i
+noremap <leader>t :call ToggleReadOnly()<CR>
+nnoremap gs     :setlocal spell!<CR>
+nnoremap gw     :ToggleWhitespace<CR>
 nnoremap <Space> za
-set foldlevel=42
 
 "==================== Navigation shortcuts ==================================="
 nnoremap \s     :wall <CR>
@@ -184,7 +150,6 @@ nnoremap <A-h> <C-w>h
 nnoremap <A-l> <C-w>l
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
-"
 " switching buffers
 autocmd FileType c,cpp noremap <A-]>    :bn<CR>
 autocmd FileType c,cpp noremap <A-[>    :bp<CR>
@@ -203,52 +168,6 @@ nnoremap * :let @/=expand("<cword>")<CR> :set hlsearch<CR>
 
 autocmd FileType markdown,tex,plaintex inoremap <expr> <C-Space> pumvisible() ? "" : "\<C-x><C-k>"
 "autocmd FileType markdown,tex,plaintex inoremap <expr> <leader>r pumvisible() ? "" : "\<C-x><C-t>"
-
-"==================== Generic function ========================="
-" Find a file in the current directory or parent ones, return the relative path
-function! SearchFileUpTen(nest_level, fpath)
-    if (filereadable(a:fpath))
-        return a:fpath
-    elseif (a:nest_level < 10)
-        return SearchFileUpTen(a:nest_level+1, "../". a:fpath)
-    else
-        return ""
-    endif
-endfunction
-
-
-"==================== Gtags navigation =========================="
-" for cscope.out run `$ cscope-indexer -r` in the project root
-" this is very ugly but quick fix
-set cscopetag
-set nocscopeverbose
-
-function! SearchCscopeDBAndSetupRoot(fhunted)
-    let found = SearchFileUpTen(0, a:fhunted)
-    if (strlen(found))
-        let rootpath = fnamemodify(found, ":h")
-        exe "cs add ".found
-        exe "cd ".rootpath
-        " echom("Project root set to: ".rootpath)
-    " else
-        " echom("Not found: ".fhunted)
-    endif
-endfunction
-
-autocmd FileType c,cpp call SearchCscopeDBAndSetupRoot("cscope.out")
-
-
-"==================== Pyton project root setup =========================="
-"
-function! SearchPythonRoot(fhunted)
-    let found = SearchFileUpTen(0, a:fhunted)
-    if (strlen(found))
-        let rootpath = fnamemodify(found, ":h")
-        exe "cd ".rootpath
-    endif
-endfunction
-autocmd FileType python call SearchPythonRoot(".root.proj")
-
 
 " NOTE: The last line is there intentionally because 'silent" does not work in
 " previous window
@@ -414,6 +333,15 @@ autocmd FileType c,cpp nnoremap <A-9>   :cs find
 autocmd FileType c,cpp nnoremap <A-0>   <C-t>zz
 autocmd FileType c,cpp nnoremap <A-r> :call ToggleQuickFix()<CR>
 
+"==================== thesaurus_query =========================="
+autocmd FileType markdown,tex,plaintex let g:tq_mthesaur_file="/usr/share/dict/mthesaur.txt"
+autocmd FileType markdown,tex,plaintex let g:tq_enabled_backends=["mthesaur_txt"]
+autocmd FileType markdown,tex,plaintex let g:tq_map_keys=0
+autocmd FileType markdown,tex,plaintex let g:tq_use_vim_autocomplete=1
+autocmd FileType markdown,tex,plaintex inoremap <expr> <leader>r pumvisible() ? "" : "\<C-x><C-u>"
+autocmd FileType markdown,tex,plaintex nnoremap <leader>r :ThesaurusQueryReplaceCurrentWord<CR>
+autocmd FileType markdown,tex,plaintex vnoremap <Leader>r "ky:ThesaurusQueryReplace <C-r>"<CR>
+
 
 "==================== Snippets =========================="
 let g:UltiSnipsExpandTrigger="<C-k>"
@@ -446,15 +374,6 @@ if maparg('c','n') ==# ''
   nmap c<leader>c <Plug>ChangeCommentary
 endif
 nmap <leader>cu <Plug>Commentary<Plug>Commentary
-
-"==================== thesaurus_query =========================="
-autocmd FileType markdown,tex,plaintex let g:tq_mthesaur_file="/usr/share/dict/mthesaur.txt"
-autocmd FileType markdown,tex,plaintex let g:tq_enabled_backends=["mthesaur_txt"]
-autocmd FileType markdown,tex,plaintex let g:tq_map_keys=0
-autocmd FileType markdown,tex,plaintex let g:tq_use_vim_autocomplete=1
-autocmd FileType markdown,tex,plaintex inoremap <expr> <leader>r pumvisible() ? "" : "\<C-x><C-u>"
-autocmd FileType markdown,tex,plaintex nnoremap <leader>r :ThesaurusQueryReplaceCurrentWord<CR>
-autocmd FileType markdown,tex,plaintex vnoremap <Leader>r "ky:ThesaurusQueryReplace <C-r>"<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -493,7 +412,6 @@ let g:airline_right_sep = ' '
 let g:airline_left_sep = ' '
 
 "==================== Syntax coloring =========================="
-
 set background=dark
 syntax on
 if get(g:, 'vim_monokai_loaded', 1)
@@ -501,19 +419,6 @@ if get(g:, 'vim_monokai_loaded', 1)
 endif
 
 "==================== Per-project setup =========================="
-
 " THIS HAS TO GO TO THE END
-function! SearchLocalVimrc()
-    let fhunted = "vimrc.local"
-    let found = SearchFileUpTen(0, fhunted)
-
-    if (strlen(found))
-        " echom("Found: ".found)
-        exe "source ".found
-    " else
-    "   echom("Not found: ".fhunted)
-    endif
-endfunction
-
 call SearchLocalVimrc()
 

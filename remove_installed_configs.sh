@@ -16,6 +16,7 @@ rmFile '~/.config/vifm/colors/Default.vifm'
 sed -i '/~\/.config\/vifm\/vifm_wrapper.sh/ d' ~/.zshrc
 
 rmFile '~/.config/nvim/init.vim'
+rmFile '~/.config/nvim/functions.vim'
 rmFile '~/.config/nvim/init_pager.vim'
 
 rmFile '~/.config/nvim/after/syntax/markdown.vim'
