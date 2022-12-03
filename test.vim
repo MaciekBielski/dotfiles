@@ -48,6 +48,7 @@ set hidden
 set autowrite
 set nosplitbelow
 set splitright
+set splitbelow
 set cursorline
 " set autochdir
 set hlsearch
@@ -120,12 +121,15 @@ autocmd FileType markdown,text,gitcommit set
 autocmd FileType gitcommit set tw=72 colorcolumn=73
 autocmd FileType c,cpp call SearchCscopeDBAndSetupRoot("cscope.out")
 autocmd FileType python call SearchPythonRoot(".root.proj")
-" autocmd TermOpen * set nonumber
-" autocmd TermClose * set number
 
 
-" noremap <leader>t :terminal<CR>i
-noremap <leader>t :call ToggleReadOnly()<CR>
+nnoremap <leader>tv :vsplit +terminal <bar> doautocmd WinEnter<CR>
+nnoremap <leader>tb :split +terminal <bar> doautocmd WinEnter<CR>
+autocmd TermOpen * set nonumber
+autocmd TermOpen * startinsert
+autocmd TermClose * set number
+
+noremap <leader>r :call ToggleReadOnly()<CR>
 nnoremap gs     :setlocal spell!<CR>
 nnoremap gw     :ToggleWhitespace<CR>
 nnoremap <Space> za
@@ -146,10 +150,24 @@ map <A-m> <C-E>
 map <A-,> <C-Y>
 map <A-u> <C-d>
 map <A-i> <C-u>
+
+nnoremap <leader>v <C-w>v
+nnoremap <leader>b <C-w>s
+
 nnoremap <A-h> <C-w>h
 nnoremap <A-l> <C-w>l
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
+
+tnoremap <ESC> <C-\><C-N>
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-l> <C-\><C-N><C-w>l
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
 " switching buffers
 autocmd FileType c,cpp noremap <A-]>    :bn<CR>
 autocmd FileType c,cpp noremap <A-[>    :bp<CR>
@@ -157,7 +175,6 @@ nmap <silent> ,/ :nohlsearch<CR>
 cmap w!! w !sudo tee % >/dev/null
 
 cnoremap vh <c-r>=(getcmdtype()==":" && getcmdpos()==1 ? "vertical help" : "vh")<CR>
-cmap <leader>r <C-r>
 
 " window resize \z \x
 nnoremap <leader>z <ESC>10<c-w>>
