@@ -26,13 +26,6 @@ function! ToggleReadOnly()
     endif
 endfunction
 
-" set filetype to C when it is empty
-function! SetFiletypeNewBuffer()
-  if @% == ""
-    :set filetype=c
-  endif
-endfunction
-
 " Find a file in the current directory or parent ones, return the relative path
 function! SearchFileUpTen(nest_level, fpath)
     if (filereadable(a:fpath))
@@ -52,7 +45,7 @@ function! SearchCscopeDBAndSetupRoot(fhunted)
         exe "cd ".rootpath
         " echom("Project root set to: ".rootpath)
     " else
-        " echom("Not found: ".fhunted)
+    "     echom("Not found: ".a:fhunted)
     endif
 endfunction
 
