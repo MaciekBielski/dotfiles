@@ -24,6 +24,8 @@ Plug 'ncm2/ncm2'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'JuliaEditorSupport/julia-vim'
+Plug 'vifm/vifm.vim'
+Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
@@ -32,6 +34,13 @@ filetype plugin indent on
 lua require('opts')
 lua require('keymap')
 lua require('autocmds')
+lua require('toggleterm').setup{
+            \   float_opts = { border = 'rounded',
+            \                  width = function() return math.floor(vim.o.columns * 0.99) end,
+            \                  height = function() return math.floor(vim.o.lines * 0.94) end
+            \                },
+            \   highlights = { FloatBorder = {fg = "237", bg = "233"} }
+            \ }
 
 " Enable in case of errors
 " let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
@@ -40,7 +49,8 @@ lua require('autocmds')
 source ~/.config/nvim/functions.vim
 
 "==================== Syntax coloring =========================="
-syntax on
+lua vim.cmd.syntax('on')
+
 if get(g:, 'vim_monokai_loaded', 1)
     colorscheme monokai
 endif
@@ -48,7 +58,6 @@ endif
 "==================== Per-project setup =========================="
 " THIS HAS TO GO TO THE END
 call SearchLocalVimrc()
-
 
 " NOTE: The last line is there intentionally because 'silent" does not work in
 " previous window

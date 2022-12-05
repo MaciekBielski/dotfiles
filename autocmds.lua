@@ -20,6 +20,11 @@ vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {'*'}, callback = function
                             end
                             })
 
+vim.api.nvim_create_autocmd({"TermEnter"}, { pattern = {'term://*toggleterm#*'}, callback = function()
+                                vim.keymap.set('t', '<leader>t', '<c-\\><c-n>:exe v:count1 . "ToggleTerm"<CR>', {silent = true})
+                            end
+                            })
+
 vim.api.nvim_create_autocmd({"TermClose"}, { pattern = {'*'}, callback = function()
                                 vim.opt.number = true
                             end
