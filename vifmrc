@@ -148,157 +148,25 @@ command! reload :write | restart
 filextype *.pdf atril %c &, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
-" Libreoffice
-filetype *.ods,*.odt,*.odp libreoffice %c 2>/dev/null &
-fileviewer *.ods,*.odt,*.odp libreoffice %c 2>/dev/null &
-filetype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx libreoffice %c 2>/dev/null &
-fileviewer *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx libreoffice %c 2>/dev/null &
-
-" Email templates
-filetype *.eml nvim %c
-fileviewer *.eml thunderbird %c
-
 " Web
-filetype *.html,*.htm nvim %c
-fileviewer *.html,*.htm firefox %c &
-
-" sc
-filetype *.sc sc %c
-fileviewer *.sc sc %c
-
-
-" PostScript
-filextype *.ps,*.eps,*.ps.gz
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in gv}
-        \ gv %c %i &,
-
-" Djvu
-filextype *.djvu
-        \ {View in zathura}
-        \ zathura %f,
-        \ {View in apvlv}
-        \ apvlv %f,
-
-" Audio
-filetype *.wav,*.mp3,*.flac,*.ogg,*.m4a,*.wma,*.ape,*.ac3
-       \ {Play using ffplay}
-       \ mpv --loop %f,
-fileviewer *.mp3 mp3info
-fileviewer *.flac soxi
-
-" Video
-filextype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
-        \ {View using ffplay}
-        \ ffplay -fs %c,
-        \ {View using Dragon}
-        \ dragon %f,
-        \ {View using mplayer}
-        \ mplayer %f,
-fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.m2v,*.mov,*.webm,*.ts,*.m4v
-         \ ffprobe -pretty %c 2>&1
-
-" Web
-filextype *.html,*.htm
-        \ {Open with dwb}
-        \ dwb %f %i &,
-        \ {Open with firefox}
-        \ firefox %f &,
-        \ {Open with uzbl}
-        \ uzbl-browser %f %i &,
-filetype *.html,*.htm links, lynx
+filetype *.html,*.htm firefox %c
+fileviewer *.html,*.htm nvim -R %c &
 
 " Object
-filetype *.o nm %f | less
-
-" Man page
-" filetype *.[1-8] gtbl %c | groff -Tascii -man | less
-" fileviewer *.[1-8] gtbl %c | groff -Tascii -man | col -b
-filetype *.[0-9] nvim %c
-filextype *.[0-9] nvim %c
-fileviewer *.[0-9] less %c
-
-" Image
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-        \ gwenview %f
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm convert -identify %f -verbose /dev/null
+fileviewer *.o nm %f | less -R
 
 " MD5
 filetype *.md5
        \ {Check MD5 hash sum}
        \ md5sum -c %f,
 
-" GPG signature
-filetype *.asc
-       \ {Check signature}
-       \ !!gpg --verify %c,
-
-" Torrent
-filetype *.torrent ktorrent %f &
-fileviewer *.torrent dumptorrent -v %c
-
-" FuseZipMount
-filetype *.zip,*.jar,*.war,*.ear,*.oxt
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ zip -sf %c | less,
-       \ {Extract here}
-       \ tar -xf %c,
-fileviewer *.zip,*.jar,*.war,*.ear,*.oxt zip -sf %c
-
-" ArchiveMount
-filetype *.tar,*.tar.bz2,*.tbz2,*.tgz,*.tar.gz,*.tar.xz,*.txz
-       \ {Mount with archivemount}
-       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-fileviewer *.tgz,*.tar.gz tar -tzf %c
-fileviewer *.tar.bz2,*.tbz2 tar -tjf %c
-fileviewer *.tar.txz,*.txz xz --list %c
-
-" Rar2FsMount and rar archives
-filetype *.rar
-       \ {Mount with rar2fs}
-       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-fileviewer *.rar unrar v %c
-
-" IsoMount
-filetype *.iso
-       \ {Mount with fuseiso}
-       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
-
-" SshMount
-filetype *.ssh
-       \ {Mount with sshfs}
-       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR,
-
-" FtpMount
-filetype *.ftp
-       \ {Mount with curlftpfs}
-       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR,
-
-" Fuse7z and 7z archives
-filetype *.7z
-       \ {Mount with fuse-7z}
-       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-fileviewer *.7z 7z l %c
-
-" Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
-fileviewer *.doc catdoc %c
-fileviewer *.docx, docx2txt.pl %f -
-
-" TuDu files
-filetype *.tudu tudu -f %c
-
-" Qt projects
-filextype *.pro qtcreator %f &
-
-" Directories
-filextype */
-        \ {View in thunar}
-        \ Thunar %f &,
 fileviewer .*/,*/ tree %f
+
+" My definitions
+fileviewer *.txt,*.sh,*.shrc,*.md,*.c,*.h.,*.cpp,*.hpp,*.cc,*.hh,*.py,*.lua,*.jl
+        \ less -R %c
+
+
 
 " Syntax highlighting in preview
 "
@@ -387,16 +255,6 @@ nnoremap A cw<c-w>
 
 nnoremap <c-j> <cr>
 cnoremap <c-j> <cr>
-" Open console in current directory
-nnoremap ,t :!xterm &<cr>
-
-" Open vim to edit vifmrc and apply settings after returning to vifm
-nnoremap ,c :write | execute ':!nvim $MYVIFMRC' | restart<cr>
-" Open nvim to edit vifmrc
-"nnoremap ,C :!nvim --remote-tab-silent $MYVIFMRC &<cr>
-
-" Toggle wrap setting on ,w key
-nnoremap ,w :set wrap!<cr>
 
 " Example of standard two-panel file managers mappings
 nnoremap <f3> :!less %f<cr>
@@ -422,22 +280,16 @@ nnoremap <f8> :delete<cr>
 " ------------------------------------------------------------------------------
 "           CUSTOM
 " ------------------------------------------------------------------------------
-nnoremap \wq :only<cr>
-nnoremap \q :! tmux respawn-pane -k -c %d '${SHELL}'<cr>
-nnoremap \gq :q<cr>
+nnoremap gq :only<cr>
+nnoremap \t :shell<cr>
+nnoremap \q :q<cr>
+nnoremap ge :view<cr>
 
 " nnoremap \t :!(echo $MUTT_EXPORT_DIR && echo %d > $MUTT_EXPORT_DIR<cr>) :q<cr>
 " if additional path has been passed from outside then write the last active
 " directory path to a file passed by MUTT_EXPORT_DIR
-nnoremap \s :sync<cr>
-nnoremap \wb :split<cr>
-nnoremap \wv :vsplit<cr>
+nnoremap \bs :split<cr>
+nnoremap \vs :vsplit<cr>
 nnoremap ~ :cd ~<cr>
 nnoremap - :cd -<cr>
-" entering a nvim project, consistency with nvim shortcuts
-nnoremap \e :!nvim<cr>
-nnoremap \v :!tmux split-window -h vifm %d <cr>
-nnoremap \b :!tmux split-window vifm %d <cr>
-
-
 

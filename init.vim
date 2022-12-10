@@ -7,7 +7,7 @@ call plug#begin("~/.config/nvim/autoload")
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'MaciekBielski/vim-airline-themes'
 Plug 'joereynolds/gtags-scope'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'MaciekBielski/vim-monokai'
@@ -39,7 +39,7 @@ lua require('toggleterm').setup{
             \                  width = function() return math.floor(vim.o.columns * 0.99) end,
             \                  height = function() return math.floor(vim.o.lines * 0.94) end
             \                },
-            \   highlights = { FloatBorder = {fg = "237", bg = "233"} }
+            \   highlights = { FloatBorder = { guifg = "#75715E", guibg = "#0f1111"} }
             \ }
 
 " Enable in case of errors
@@ -54,6 +54,7 @@ lua vim.cmd.syntax('on')
 if get(g:, 'vim_monokai_loaded', 1)
     colorscheme monokai
 endif
+set termguicolors
 
 "==================== Per-project setup =========================="
 " THIS HAS TO GO TO THE END

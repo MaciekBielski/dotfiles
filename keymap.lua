@@ -19,7 +19,7 @@ vim.keymap.set('n', '<leader>s', function() vim.cmd('wall') end)
 vim.keymap.set('n', ']]', ']]zt3<C-Y>')
 vim.keymap.set('n', '[[', ']]zt3<C-Y>')
 vim.keymap.set({'n'}, '<leader>q', ':q<CR>')
-vim.keymap.set({'t'}, '<leader>q', '<c-\\><c-n>:q<CR>')
+-- vim.keymap.set({'t'}, '<leader>q', '<c-\\><c-n>:q<CR>')
 
 vim.keymap.set('', '<A-m>', '<C-E>')
 vim.keymap.set('', '<A-,>', '<C-Y>')

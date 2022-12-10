@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 function rmFile() {
-    printf "$(tput setaf 1; tput setab 3)[!] Removing: $1$(tput sgr 0)\n\n"
+    printf "$(tput setaf 1;)[!] Removing: $1$(tput sgr 0)\n\n"
     rm -f "$1"
 }
 
@@ -17,6 +17,9 @@ sed -i '/~\/.config\/vifm\/vifm_wrapper.sh/ d' ~/.zshrc
 
 rmFile '~/.config/nvim/init.vim'
 rmFile '~/.config/nvim/functions.vim'
+rmFile '~/.config/nvim/lua/opts.lua'
+rmFile '~/.config/nvim/lua/keymap.lua'
+rmFile '~/.config/nvim/lua/autocmds.lua'
 rmFile '~/.config/nvim/init_pager.vim'
 
 rmFile '~/.config/nvim/after/syntax/markdown.vim'
