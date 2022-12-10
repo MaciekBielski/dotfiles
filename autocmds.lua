@@ -19,11 +19,13 @@ vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {'*'}, callback = function
                                 vim.opt_local.buflisted = false
                                 vim.opt_local.bufhidden = 'unload'
                                 vim.cmd.startinsert()
-                                -- vim.keymap.del('n', '<leader>q')
-                                vim.keymap.set('n', '<leader>q', ':norm i<CR> <leader>q')
                             end
                             })
 
+vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {'term://*vifm*'}, callback = function()
+                                vim.keymap.set('n', '<leader>q', ':norm i<CR> <leader>q')
+                            end
+                            })
 
 vim.api.nvim_create_autocmd({"TermEnter"}, { pattern = {'term://*toggleterm#*'}, callback = function()
                                 vim.keymap.set('t', '<leader>t', '<c-\\><c-n>:exe v:count1 . "ToggleTerm"<CR>', {silent = true})

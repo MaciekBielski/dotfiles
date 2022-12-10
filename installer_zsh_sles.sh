@@ -26,7 +26,7 @@ install -m 0644 -T -D ./vifmrc ~/.config/vifm/vifmrc
 install -m 0644 -T -D ./vifm_wrapper.sh ~/.config/vifm/vifm_wrapper.sh
 install -m 0644 -T -D ./Default.vifm ~/.config/vifm/colors/Default.vifm
 
-# sourceFirstFromSecond '~/.config/vifm/vifm_wrapper.sh' ~/.zshrc
+sourceFirstFromSecond '~/.config/vifm/vifm_wrapper.sh' ~/.zshrc
 
 # sh -c "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 install -m 0644 -T ./init.vim ~/.config/nvim/init.vim
@@ -34,23 +34,23 @@ install -m 0644 -T ./functions.vim ~/.config/nvim/functions.vim
 install -m 0644 -T -D ./opts.lua ~/.config/nvim/lua/opts.lua
 install -m 0644 -T -D ./keymap.lua ~/.config/nvim/lua/keymap.lua
 install -m 0644 -T -D ./autocmds.lua ~/.config/nvim/lua/autocmds.lua
-# install -m 0644 -T ./init_pager.vim ~/.config/nvim/init_pager.vim
+install -m 0644 -T ./init_pager.vim ~/.config/nvim/init_pager.vim
 
 install -m 0644 -T -D ./markdown.vim ~/.config/nvim/after/syntax/markdown.vim
 # nvim -c 'PlugInstall' -c 'qall'
 
 install -m 0644 -T -D ./env_vars.sh ~/.config/env_vars.sh
-# sourceFirstFromSecond '~/.config/env_vars.sh' ~/.zshrc
+sourceFirstFromSecond '~/.config/env_vars.sh' ~/.zshrc
 
 install -m 0644 -T -D ./aliases.sh ~/.config/aliases.sh
-# sourceFirstFromSecond '~/.config/aliases.sh' ~/.zshrc
+sourceFirstFromSecond '~/.config/aliases.sh' ~/.zshrc
 
 install -m 0644 -T -D ./gitconfig_inc ~/.gitconfig_inc
 
 install -m 0644 -T ./fzf.zsh ~/.fzf.zsh
-# sourceFirstFromSecond '~/.fzf.zsh' ~/.zshrc
+sourceFirstFromSecond '~/.fzf.zsh' ~/.zshrc
 
 install -m 0644 -T ./zshenv ~/.zshenv
-# sourceFirstFromSecond '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshenv
+sourceFirstFromSecond '/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshenv
 
 popd
