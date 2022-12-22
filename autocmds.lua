@@ -27,8 +27,18 @@ vim.api.nvim_create_autocmd({"TermOpen"}, { pattern = {'term://*vifm*'}, callbac
                             end
                             })
 
-vim.api.nvim_create_autocmd({"TermEnter"}, { pattern = {'term://*toggleterm#*'}, callback = function()
+-- vim.api.nvim_create_autocmd({"TermEnter"}, { pattern = {'term://*:/usr/bin/zsh'}, callback = function()
+--                                 print("non toggleterm")
+--                             end
+--                             })
+
+vim.api.nvim_create_autocmd({"TermEnter"}, { pattern = {'term://*;#toggleterm#*'}, callback = function()
                                 vim.keymap.set('t', '<leader>t', '<c-\\><c-n>:exe v:count1 . "ToggleTerm"<CR>', {silent = true})
+                            end
+                            })
+
+vim.api.nvim_create_autocmd({"TermLeave"}, { pattern = {'term://*;#toggleterm#*'}, callback = function()
+                                vim.keymap.del('t', '<leader>t')
                             end
                             })
 

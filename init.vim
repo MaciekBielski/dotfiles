@@ -4,28 +4,33 @@ filetype off
 
 call plug#begin("~/.config/nvim/autoload")
 
-Plug 'nelstrom/vim-markdown-folding'
-Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'MaciekBielski/vim-airline-themes'
-Plug 'joereynolds/gtags-scope'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'MaciekBielski/vim-monokai'
-Plug 'MaciekBielski/my_ulti_snips'
 Plug 'MaciekBielski/vim-window-resize-easy'
-Plug 'SirVer/ultisnips'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'Raimondi/delimitMate'
 Plug 'jreybert/vimagit'
-" Plug 'ron89/thesaurus_query.vim'
 Plug 'tpope/vim-commentary'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'vifm/vifm.vim'
 Plug 'akinsho/toggleterm.nvim'
+
+Plug 'junegunn/fzf'
+
+Plug 'MaciekBielski/my_ulti_snips'
+Plug 'SirVer/ultisnips'
+
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
+Plug 'nelstrom/vim-markdown-folding'
+Plug 'tpope/vim-fugitive'
+Plug 'joereynolds/gtags-scope'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'Raimondi/delimitMate'
+" Plug 'ron89/thesaurus_query.vim'
+Plug 'roxma/nvim-yarp'
 
 call plug#end()
 

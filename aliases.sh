@@ -13,6 +13,7 @@ alias less='less -r'
 alias srcgrep='find . -type f -print0 | xargs -0 egrep -n --color'
 alias now="awk '/^now/ {print $3; exit}' /proc/timer_list"
 alias rngrep="grep -rn"
+alias fm="vifm"
 
 ndiff () {
 

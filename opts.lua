@@ -113,3 +113,6 @@ vim.g.airline_left_sep = ""
 -- let g:airline_right_sep = '«'
 -- vim.g.airline_right_sep = '◀'
 
+-- https://github.com/junegunn/fzf/blob/master/README-VIM.md
+vim.g.fzf_action = { ['ctrl-t'] = '', ['ctrl-b'] = 'split', ['ctrl-v'] = 'vsplit'}
+vim.g.fzf_layout = { window = { width = 0.99, height = 0.94 }}

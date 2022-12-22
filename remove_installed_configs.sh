@@ -32,8 +32,8 @@ sed -i '/~\/.config\/aliases.sh/ d' ~/.zshrc
 
 rmFile '~/.gitconfig_inc'
 
-rmFile '~/.fzf.zsh'
-sed -i '/~\/.fzf.zsh/ d' ~/.zshrc
+# This has to be done before nvim plugins are removed
+~/.config/nvim/autoload/fzf/uninstall
 
 rmFile '~/.zshenv'
 
