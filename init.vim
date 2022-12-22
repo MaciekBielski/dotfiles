@@ -4,6 +4,8 @@ filetype off
 
 call plug#begin("~/.config/nvim/autoload")
 
+Plug '~/.config/nvim/autoload/hello'
+
 Plug 'vim-airline/vim-airline'
 Plug 'MaciekBielski/vim-airline-themes'
 Plug 'MaciekBielski/vim-monokai'
@@ -53,6 +55,8 @@ lua require('toggleterm').setup{
 
 source ~/.config/nvim/functions.vim
 
+lua vim.g.fzf_action = { ['ctrl-t'] = '', ['ctrl-x'] = 'split', ['\\v'] = 'vsplit'}
+" let g:fzf_action = { 'ctrl-t': '', '<leader>b': 'split', '<leader>v': 'vsplit'}
 "==================== Syntax coloring =========================="
 lua vim.cmd.syntax('on')
 
