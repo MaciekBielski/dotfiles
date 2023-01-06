@@ -1,5 +1,5 @@
 export MANPATH=/usr/share/man:/usr/local/man:${HOME}/.local/share/man
-export EDITOR=/usr/bin/nvim
+export EDITOR=~/.local/bin/hx
 export PAGER="/usr/bin/less -r"
 export HISTFILE="${HOME}/.histfile"
 export HISTSIZE=5000

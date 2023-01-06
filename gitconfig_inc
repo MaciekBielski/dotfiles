@@ -1,7 +1,7 @@
 [advice]
 	detachedHead = false
 [core]
-	editor = nvim
+	editor = hx
 	autocrlf = input
 	pager = less -R -F
 	logAllRefUpdates = true
