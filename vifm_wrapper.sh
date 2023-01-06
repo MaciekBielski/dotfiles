@@ -9,7 +9,7 @@ fm () {
         exit
     else
         # Launch vifm
-        echo 'parent is NOT vifm'
+        # echo 'parent is NOT vifm'
         vifm "$@"
     fi
 }
