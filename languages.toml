@@ -1,0 +1,11 @@
+[[language]]
+name = "cmake"
+rulers = [120]
+
+[[language]]
+name = "cpp"
+rulers = [120]
+file-types = ["c", "cc", "cpp", "h", "hh", "hpp"]
+language-server = { command = "clangd-12" }
+roots = [".root.proj"]
+

@@ -44,3 +44,12 @@ sourceFromBashRc '~/.fzf.bash'
 
 popd
 
+declare -r hx_app="helix-22.12-x86_64.AppImage"
+pushd "~/.local/bin"
+wget "https://github.com/helix-editor/helix/releases/download/22.12/${hx_app}"
+chmod a+x "${hx_app}"
+ln -fs "~/.local/bin/${hx_app}" "~/.local/bin/hx"
+popd
+
+install -m 0644 -T -D ./config.toml ~/.config/helix/config.toml
+install -m 0644 -T -D ./languages.toml ~/.config/helix/languages.toml
