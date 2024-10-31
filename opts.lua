@@ -40,8 +40,8 @@ vim.opt.smarttab = false
 vim.opt.ignorecase = true
 vim.opt.smartindent = true
 vim.opt.clipboard:append('unnamedplus')
-vim.opt.cscopetag = true
-vim.opt.cscopeverbose = false
+-- vim.opt.cscopetag = true
+-- vim.opt.cscopeverbose = false
 vim.opt.foldlevel = 42
 vim.opt.background = 'dark'
 

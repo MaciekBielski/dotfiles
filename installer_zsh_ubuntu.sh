@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # For testing:
-# sudo apt install zsh
+# sudo apt -y install zsh
 # sudo chsh -s /usr/bin/zsh <USER_NAME>
 # sudo login -f <USER_NAME>
 
@@ -14,19 +14,19 @@ function sourceFirstFromSecond() {
 
 declare -r SCRIPT_DIR=$(readlink -f $(dirname -- "${BASH_SOURCE[0]}"))
 
-# sudo apt update
-# sudo apt -y install git tmux vifm cscope fzf xclip ripgrep neovim curl
-# sudo apt -y install zsh-syntax-highlighting
+sudo apt update
+sudo apt -y install git tmux vifm cscope xclip ripgrep neovim curl
+sudo apt -y install zsh-syntax-highlighting
 
 pushd "$SCRIPT_DIR"
 install -m 0644 -T ./tmux.conf ~/.tmux.conf
 install -m 0644 -T -D ./vifmrc ~/.config/vifm/vifmrc
-# install -m 0644 -T -D ./vifm_wrapper.sh ~/.config/vifm/vifm_wrapper.sh
+install -m 0644 -T -D ./vifm_wrapper.sh ~/.config/vifm/vifm_wrapper.sh
 install -m 0644 -T -D ./Default.vifm ~/.config/vifm/colors/Default.vifm
 
 sourceFirstFromSecond '~/.config/vifm/vifm_wrapper.sh' ~/.zshrc
 
-# sh -c "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+sh -c "curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 install -m 0644 -T ./init.vim ~/.config/nvim/init.vim
 install -m 0644 -T ./functions.vim ~/.config/nvim/functions.vim
 install -m 0644 -T -D ./opts.lua ~/.config/nvim/lua/opts.lua
