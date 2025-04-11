@@ -281,15 +281,15 @@ nnoremap <f8> :delete<cr>
 "           CUSTOM
 " ------------------------------------------------------------------------------
 nnoremap gq :only<cr>
-nnoremap \t :shell<cr>
-nnoremap \q :q<cr>
+nnoremap \q :shell<cr>
+" nnoremap \q :q<cr>
 nnoremap ge :view<cr>
 
 " nnoremap \t :!(echo $MUTT_EXPORT_DIR && echo %d > $MUTT_EXPORT_DIR<cr>) :q<cr>
 " if additional path has been passed from outside then write the last active
 " directory path to a file passed by MUTT_EXPORT_DIR
-nnoremap \bs :split<cr>
-nnoremap \vs :vsplit<cr>
+" nnoremap \bs :split<cr>
+" nnoremap \vs :vsplit<cr>
 nnoremap ~ :cd ~<cr>
 nnoremap - :cd -<cr>
 

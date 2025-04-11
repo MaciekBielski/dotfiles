@@ -10,6 +10,6 @@ fm () {
     else
         # Launch vifm
         # echo 'parent is NOT vifm'
-        vifm "$@"
+        vifm "$(@:-$PWD)"
     fi
 }
