@@ -27,7 +27,7 @@ Plug 'ncm2/ncm2-path'
 
 Plug 'nelstrom/vim-markdown-folding'
 Plug 'tpope/vim-fugitive'
-Plug 'joereynolds/gtags-scope'
+" Plug 'joereynolds/gtags-scope'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'Raimondi/delimitMate'
