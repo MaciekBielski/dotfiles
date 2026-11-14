@@ -26,7 +26,8 @@
 [alias]
 	blc = blame -c
 	st = status -s --branch
-	ls = log --date=short --color=always --pretty=format:'%C(green)%ad %C(auto)%h %C(blue)%an:%C(red)%d %C(reset)%s'
+	ls = log --date=short --color=always --pretty=format:'%C(green)%ad %C(auto)%h %C(blue)%>(22,trunc)%an: %C(reset)%s'
+	lr = log --date=short --color=always --pretty=format:'%C(green)%ad %C(auto)%h %C(blue)%>(22,trunc)%an: %C(reset)%s %C(red)%d%C(reset)'
 	lg = log --color=always --pretty=format:'%C(green)%H%C(red)%d%n%C(yellow)Autor:  %<|(36)%an %ae%n%C(yellow)\t%ai%n%C(yellow)Commit: %<|(36)%cn %ce%n%C(yellow)\t%ci%n%n\t%s%n%n%b%n' --name-status
 	lgfollow = log --color=always --pretty=format:'%n%n%n%C(green)%h %C(blue)%an:%C(yellow)%s%C(reset)%n' -p --follow
 
