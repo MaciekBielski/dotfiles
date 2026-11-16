@@ -25,4 +25,6 @@ if status is-interactive
 	set -g --export GCC_COLORS 'error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 	set -g --export PATH "$HOME/.local/bin:$HOME/bin:/usr/bin/X11:/usr/lib64/ccache:$PATH"
 
+	set fish_greeting ""
+
 end
